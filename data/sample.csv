@@ -1,0 +1,11 @@
+date,product,category,quantity,price,region
+2024-01-01,Laptop,Electronics,5,1200.00,North
+2024-01-01,Desk Chair,Furniture,3,250.00,South
+2024-01-02,Smartphone,Electronics,8,800.00,East
+2024-01-02,Bookshelf,Furniture,2,150.00,West
+2024-01-03,Tablet,Electronics,6,500.00,North
+2024-01-03,Office Desk,Furniture,4,400.00,South
+2024-01-04,Headphones,Electronics,12,100.00,East
+2024-01-04,Monitor Stand,Furniture,7,75.00,West
+2024-01-05,Wireless Mouse,Electronics,15,50.00,North
+2024-01-05,File Cabinet,Furniture,3,200.00,South 
