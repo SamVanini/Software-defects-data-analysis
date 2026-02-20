@@ -11,7 +11,8 @@ Software-defects-data-analysis/
 ├── notebooks/
 │   └── data_workflow.ipynb          # Main workflow notebook
 ├── data/
-│   └──                              # Dataset
+│   └── sample.csv                   # Dataset for setup testing
+|   └──                              # Dataset
 ├── env/                             # Virtual environment (created)
 ├── output/                          # Generated outputs (created)
 ├── requirements.txt                 # Python dependencies
