@@ -91,7 +91,7 @@ if [ ! -f ".env" ]; then
     echo "Creating .env file..."
     cat > .env << 'EOF'
 # Environment variables for Data analysis and ML project
-DATASET_NAME=TBD
+DATASET_NAME=dataset.csv
 DATA_DIR=./data
 OUTPUT_DIR=./output
 EOF

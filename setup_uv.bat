@@ -91,7 +91,7 @@ IF NOT EXIST .env (
     ECHO Creating .env file...
     (
         ECHO # Environment variables for Data analysis and ML project
-        ECHO DATASET_NAME=TBD
+        ECHO DATASET_NAME=dataset.csv
         ECHO DATA_DIR=./data
         ECHO OUTPUT_DIR=./output
     ) > .env
