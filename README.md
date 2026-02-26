@@ -54,7 +54,7 @@ cd local-data-engineering-environment
 setup_uv.bat   # Windows
 ```
 
-### Launch Jupyter
+### Launch Jupyter (Python venv)
 
 ```bash
 # Activate virtual environment
@@ -65,6 +65,10 @@ env\Scripts\activate.bat  # Windows
 # Start Jupyter notebook
 jupyter notebook
 ```
+
+### Launch Jupyter (uv)
+
+`uv run jupyter notebook`
 
 ### Run the Workflow
 
