@@ -7,3 +7,4 @@ streamlit>=1.54.0
 jupyter>=1.0.0
 python-dotenv>=1.0.0
 matplotlib>=3.7.0
+pytest>=9.0.0
