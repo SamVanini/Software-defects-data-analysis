@@ -9,7 +9,9 @@ def test_imports():
         'dotenv',
         'matplotlib',
         'seaborn',
-        'sklearn'
+        'sklearn',
+        'pytest',
+        'streamlit'
     ]
 
     missing_imports = []
@@ -63,7 +65,8 @@ def test_loading_data():
     try:
         import pandas as pd
 
-        df = pd.read_csv('data/sample.csv')
+        path = Path('data').joinpath('sample.csv')
+        df = pd.read_csv(path)
 
         print(f"Sample data loaded: {len(df)} records found")
         print(f"Columns: {list(df.columns)}")
