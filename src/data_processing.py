@@ -1,4 +1,5 @@
 import polars as pl
+import polars.selectors as cs
 import dotenv
 import os
 from pathlib import Path
@@ -32,5 +33,27 @@ def load_raw_data(filename: str, fallback_dir: str = "data") -> pl.DataFrame | N
         return None
         
 def clean_data(df: pl.DataFrame) -> pl.DataFrame:
-    """Apply data cleaning transformations"""
-    ...
+    """
+    Apply data cleaning transformations starting from a copy of the dataset
+    received as input
+    
+    Args:
+        df (pl.DataFrame): dataframe representing the loaded dataset
+
+    Returns:
+        pl.DataFrame: cleaned dataframe
+    """
+    
+    if df.is_empty():
+        return df
+    
+    ret = df.clone()
+
+    numeric_df = ret.select(cs.numeric())
+    
+    for col in numeric_df.columns:
+        ret = ret.with_columns(
+            ret[col].fill_null(strategy="mean")
+        )
+    
+    return ret
