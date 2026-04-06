@@ -15,6 +15,27 @@ Software-defects-data-analysis/
 |   └── dataset.csv                  # Dataset
 ├── env/                             # Virtual environment (created)
 ├── output/                          # Generated outputs (created)
+├── streamlit_app/                   # Streamlit presentation
+│   ├── .streamlit/
+|   │   └── config.toml              # Config file
+|   ├── pages/                       # MPA Pages files
+│   │   ├── 1_Data_Exploration.py
+│   │   ├── 2_Data_Visualization.py
+│   │   ├── 3_Model_Training.py
+│   │   ├── 4_Predictions.py
+│   │   └── 5_Analytics.py
+|   ├── src/                         # Core functions to use in app
+│   │   ├── data_processing.py
+│   │   ├── model_inference.py
+│   │   ├── model_training.py
+│   │   └── visualization.py
+|   ├── tests/                       # Unit and integration tests of core functions
+│   │   ├── test_data_processing.py
+│   │   ├── test_integration.py
+│   │   └── test_models.py
+|   ├── docker-compose.yaml
+|   ├── Dockerfile
+│   └── Home.py
 ├── requirements.txt                 # Python dependencies
 ├── setup.sh                         # Linux/Mac setup script via python venv
 ├── setup.bat                        # Windows setup script via python venv
