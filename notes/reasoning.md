@@ -53,6 +53,15 @@ From Halstead metrics and other information available in raw dataset, I could co
 - Program effort (volume x difficulty): Measures the amount of mental activity needed to translate the existing algorithm into implementation in the specified program language
 - Intelligence content (volume / difficulty): This parameter provides a measurement of program complexity, independently of the programming language in which it was implemented
 
+### Hyperparameters tuning
+
+During the experiments I tried the following scoring parameters:
+
+- 'roc_auc': Best used when comparing models across different thresholds or ranking performance
+- 'f1': Need a single metric balancing precision and recall
+
+Outcome: switched back to roc_auc, better results
+
 ## Models Evaluation
 
 [Reference](https://towardsdatascience.com/performance-metrics-for-binary-classifier-in-simple-words-be958535db49/)
