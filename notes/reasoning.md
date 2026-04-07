@@ -26,6 +26,12 @@ Key metrics:
 
 ## Observations
 
+### Data Cleaning
+
+- LOC equals to 0 doesn't make sense, because a program without LOC hasn't observable features -> Drop the record
+- LOC > 0 and Length == 0, doesn't make sense -> drop records
+- Volume == 0 with length > 0 and vocabulary size > 1 -> drop records
+
 ### VIF
 
 sklearn does not provide utilities or methods to calculate this metrics automatically, so I had to manually compute regression against each single feature
@@ -52,6 +58,7 @@ From Halstead metrics and other information available in raw dataset, I could co
 - Coupling, fan in + fan out: high coupled modules are more difficult to test, so they represent single points of failure
 - Program effort (volume x difficulty): Measures the amount of mental activity needed to translate the existing algorithm into implementation in the specified program language
 - Intelligence content (volume / difficulty): This parameter provides a measurement of program complexity, independently of the programming language in which it was implemented
+- Maintainability Index (171 - 5.2 x ln(V) - 0.23 x Cyclo - 16.2 x ln(LOC)) : The Maintainability Index (MI) is calculated using a formula that combines Halstead Volume (V), Cyclomatic Complexity (Cyclo), and Lines of Code (LOC)
 
 ### Hyperparameters tuning
 
@@ -97,3 +104,9 @@ F1 = 2 x (Precision x Recall) / (Precision + Recall)
 F1 is the harmonic mean of Precision and Recall, so you can’t get a high F1 if either one is very low. Unlike Balanced Accuracy, the F1 doesn’t take into account True Negatives - it’s easy to see if we expand the formula.
 F1 only cares about the samples the model said are positive, and about the samples that actually are positive and doesn’t care at all about how many negative samples we have in dataset or how many were classified correctly.
 That’s why this metric is quite popular when evaluating models aimed at finding anomalies.
+
+**ROC AUC**
+
+[Reference](https://towardsdatascience.com/roc-auc-explained-a-beginners-guide-to-evaluating-classification-models/)
+
+ROC AUC in this scenario is a good metric for models evaluation because I am dealing with an imbalanced dataset
