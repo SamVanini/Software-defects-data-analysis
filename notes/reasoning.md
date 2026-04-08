@@ -69,6 +69,10 @@ During the experiments I tried the following scoring parameters:
 
 Outcome: switched back to roc_auc, better results
 
+### Threshold set up
+
+TunedThresholdClassifierCV (sklearn min. 1.5.0) [Reference](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TunedThresholdClassifierCV.html)
+
 ## Models Evaluation
 
 [Reference](https://towardsdatascience.com/performance-metrics-for-binary-classifier-in-simple-words-be958535db49/)
