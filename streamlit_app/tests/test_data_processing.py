@@ -1,7 +1,7 @@
 import pytest
 import polars as pl
 import numpy as np
-from src.data_processing import load_raw_data, clean_data
+from src.data_processing import load_raw_data, clean_data, remove_noisy_data
 
 def test_load_raw_data_not_existant_file_should_return_none():
     # Arrange
@@ -55,7 +55,13 @@ def test_load_raw_data_existant_file_should_return_dataframe():
     assert len(df.columns) >= 6
     assert len(df) > 0
 
-def test_clean_data_none_dataframe_should_return_none():
+def test_clean_data_none_dataframe_shold_return_none():
+    # Act (type hints state that None is invalid, but they are not enforced)
+    df = clean_data(None)
+    
+    assert df is None
+
+def test_clean_data_empty_dataframe_should_return_none():
     # Arrange
     mock_schema = pl.Schema({"x": pl.Int32(), "y": pl.String()})
     empty_df = mock_schema.to_frame()
@@ -84,3 +90,49 @@ def test_clean_data_numeric_null_cols_should_be_filled_with_mean():
     # Assert
     assert mock_df.null_count().sum().item() > 0
     assert df.null_count().sum().item() == 0
+
+def test_remove_noisy_data_none_dataframe_should_return_none():
+    # Act (type hints state that None is invalid, but they are not enforced)
+    df = remove_noisy_data(None)
+    
+    assert df is None
+
+def test_remove_noisy_data_empty_dataframe_should_return_empty_dataframe():
+    # Arrange
+    mock_schema = pl.Schema({"x": pl.Int32(), "y": pl.String()})
+    empty_df = mock_schema.to_frame()
+
+    # Act
+    df = remove_noisy_data(empty_df)
+
+    assert df.equals(empty_df)
+
+def test_remove_noisy_data_zero_valued_loc_entries_should_be_removed():
+    # Arrange
+    mock_df = pl.DataFrame({'LOC': [0, 2, 5], 'LENGTH': [3, 1, 0], 'VOLUME': [5, 0, 2]})
+    
+    # Act
+    df = remove_noisy_data(mock_df)
+
+    assert df is not None
+    assert df.filter(pl.col('LOC') == 0).is_empty()
+
+def test_remove_noisy_data_zero_valued_length_entries_should_be_removed():
+    # Arrange
+    mock_df = pl.DataFrame({'LOC': [0, 2, 5], 'LENGTH': [3, 1, 0], 'VOLUME': [5, 0, 2]})
+    
+    # Act
+    df = remove_noisy_data(mock_df)
+
+    assert df is not None
+    assert df.filter(pl.col('LENGTH') == 0).is_empty()
+
+def test_remove_noisy_data_zero_valued_volume_entries_should_be_removed():
+    # Arrange
+    mock_df = pl.DataFrame({'LOC': [0, 2, 5], 'LENGTH': [3, 1, 0], 'VOLUME': [5, 0, 2]})
+    
+    # Act
+    df = remove_noisy_data(mock_df)
+
+    assert df is not None
+    assert df.filter(pl.col('VOLUME') == 0).is_empty()

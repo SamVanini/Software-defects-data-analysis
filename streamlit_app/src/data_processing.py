@@ -44,7 +44,7 @@ def clean_data(df: pl.DataFrame) -> pl.DataFrame:
         pl.DataFrame: cleaned dataframe
     """
     
-    if df.is_empty():
+    if df is None or df.is_empty():
         return df
     
     ret = df.clone()
@@ -56,4 +56,24 @@ def clean_data(df: pl.DataFrame) -> pl.DataFrame:
             ret[col].fill_null(strategy="mean")
         )
     
+    return ret
+
+def remove_noisy_data(df: pl.DataFrame) -> pl.DataFrame:
+    """
+    Remove data with meaningless information or invalid ones
+
+    Args:
+        df (pl.DataFrame): dataframe representing the loaded dataset
+
+    Returns:
+        pl.DataFrame: cleaned dataframe
+    """
+    if df is None or df.is_empty():
+        return df
+    
+    ret = df.clone()
+    ret = ret.filter(pl.col('LOC') > 0)
+    ret = ret.filter(pl.col('LENGTH') > 0)
+    ret = ret.filter(pl.col('VOLUME') > 0)
+
     return ret
