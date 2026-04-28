@@ -77,6 +77,14 @@ TunedThresholdClassifierCV (sklearn min. 1.5.0) [Reference](https://scikit-learn
 
 [Reference](https://towardsdatascience.com/performance-metrics-for-binary-classifier-in-simple-words-be958535db49/)
 
+### Address imbalancing
+
+RandomOverSampler [Reference](https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.RandomOverSampler.html)
+
+RandomUnderSampler [Reference](https://imbalanced-learn.org/stable/references/generated/imblearn.under_sampling.RandomUnderSampler.html)
+
+BalancedBaggingClassifier [Reference](https://medium.com/@nageshmashette32/balanced-bagging-classifier-bagging-for-imbalanced-classification-dfba66c44c14)
+
 **Accuracy Score**
 
 TP = True Positives
