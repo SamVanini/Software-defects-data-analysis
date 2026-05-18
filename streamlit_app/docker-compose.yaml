@@ -3,8 +3,10 @@ version: "3.8"
 services:
   app:
     build:
-      context: .
-      dockerfile: docker/Dockerfile.dev
+      context: ./
+      additional_contexts:
+        parent: ../
+      dockerfile: ./Dockerfile
     ports:
       - "8501:8501"
     volumes:

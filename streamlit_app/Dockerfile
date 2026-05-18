@@ -1,16 +1,15 @@
 # Multi-stage build for minimal image size
-FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim AS builder
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 
 WORKDIR /app
 
-# Copy dependency files
-COPY pyproject.toml uv.lock* ./
-
-# Install dependencies in isolated environment
-RUN uv sync --frozen --no-dev
+# Install dependencies into an isolated venv
+COPY --from=parent requirements.txt ./
+RUN uv venv .venv && \
+    uv pip install --python .venv -r requirements.txt
 
 # Production stage - minimal base image
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
@@ -22,8 +21,8 @@ RUN apt-get update && apt-get install -y \
 # Copy virtual environment from builder
 COPY --from=builder /app/.venv /app/.venv
 
-# Copy application code
-COPY . .
+# Copy application code (streamlit_app/ contents from project root context)
+COPY ./ .
 
 # Create non-root user for security
 RUN useradd -m -u 1000 appuser && \
@@ -35,9 +34,6 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 # Expose Streamlit default port
 EXPOSE 8501
-
-# Health check endpoint
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
 # Run Streamlit
 ENTRYPOINT ["streamlit", "run", "Home.py", \
