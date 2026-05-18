@@ -12,11 +12,22 @@ services:
     volumes:
       - .:/app # Mount source for live reload
       - /app/.venv # Don't mount venv
+      - ./data:/app/data # Dataset folder
+      - ./output:/app/output # Output folder
     environment:
       - ENVIRONMENT=development
       - PYTHONUNBUFFERED=1
+      - DATASET_NAME=dataset.csv
+      - DATA_DIR=./data
+      - OUTPUT_DIR=./output
     command: >
       streamlit run Home.py
       --server.port=8501
       --server.address=0.0.0.0
       --server.runOnSave=true
+
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
