@@ -1,5 +1,5 @@
 [server]
-enableStaticServing = true
+enableStaticServing = false
 
 [theme.light]
 primaryColor = "#cb785c"
@@ -17,7 +17,6 @@ headingFontSizes = ["3rem", "2.5rem", "2.25rem", "2rem", "1.5rem"]
 codeFont = "SpaceMono"
 codeFontSize = ".75rem"
 codeBackgroundColor = "#ecebe4"
-chartCategoricalColors = ["#0ea5e9", "#059669", "#fbbf24"]
 
 [theme]
 base = "dark"
@@ -36,4 +35,3 @@ headingFontSizes = ["3rem", "2.5rem", "2.25rem", "2rem", "1.5rem"]
 codeFont = "SpaceMono"
 codeFontSize = ".75rem"
 codeBackgroundColor = "#ecebe4"
-chartCategoricalColors = ["#ffc862", "#2d46b9", "#b49bc8"]
