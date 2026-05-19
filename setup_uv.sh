@@ -44,8 +44,8 @@ echo -e "${GREEN}UV detected:${NC} $UV_VERSION"
 echo ""
 
 # Create virtual environment using UV
-echo -e "${BLUE}[2/6]${NC} Creating virtual environment with UV..."
-if uv venv .venv; then
+echo -e "${BLUE}[2/6]${NC} Creating virtual environment with UV and Python 12..."
+if uv venv --python 3.12 .venv; then
     echo -e "${GREEN}Virtual environment created successfully${NC}"
 else
     echo -e "${RED}[ERROR]${NC} Failed to create virtual environment!"

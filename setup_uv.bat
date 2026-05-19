@@ -37,8 +37,8 @@ ECHO UV detected: %UV_VERSION%
 ECHO.
 
 REM Create virtual environment using UV
-ECHO [2/6] Creating virtual environment with UV...
-uv venv .venv
+ECHO [2/6] Creating virtual environment with UV and Python 12...
+uv venv --python 3.12 .venv
 
 if ERRORLEVEL 1 (
     ECHO [ERROR] Failed to create virtual environment!
