@@ -69,6 +69,7 @@ def test_clean_data_empty_dataframe_should_return_none():
     # Act
     df = clean_data(empty_df)
 
+    assert df is not None
     assert df.equals(empty_df)
 
 def test_clean_data_numeric_null_cols_should_be_filled_with_mean():
@@ -88,6 +89,7 @@ def test_clean_data_numeric_null_cols_should_be_filled_with_mean():
     df = clean_data(mock_df)
 
     # Assert
+    assert df is not None
     assert mock_df.null_count().sum().item() > 0
     assert df.null_count().sum().item() == 0
 
@@ -105,6 +107,7 @@ def test_remove_noisy_data_empty_dataframe_should_return_empty_dataframe():
     # Act
     df = remove_noisy_data(empty_df)
 
+    assert df is not None
     assert df.equals(empty_df)
 
 def test_remove_noisy_data_zero_valued_loc_entries_should_be_removed():
