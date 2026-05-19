@@ -24,6 +24,12 @@ COPY --from=builder /app/.venv /app/.venv
 # Copy application code (streamlit_app/ contents from project root context)
 COPY ./ .
 
+# Copy dataset
+COPY --from=parent ./data /app/data
+
+# Copy output files
+COPY --from=parent ./output /app/output
+
 # Create non-root user for security
 RUN useradd -m -u 1000 appuser && \
     chown -R appuser:appuser /app
