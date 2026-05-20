@@ -12,12 +12,14 @@ After the exploration and binary classification models comparison, a Streamlit p
 
 ```
 Software-defects-data-analysis/
-├── notebooks/
-│   └── data_workflow.ipynb          # Main workflow notebook
 ├── data/
 │   └── sample.csv                   # Dataset for setup testing
 |   └── dataset.csv                  # Dataset
 ├── env/                             # Virtual environment (created by setup script)
+├── notebooks/
+│   └── data_workflow.ipynb          # Main workflow notebook
+├── notes/
+│   └── reasoning.md                 # Notes related to workflow trials
 ├── output/                          # Pre-generated plot images (loaded by Streamlit pages)
 ├── streamlit_app/                   # Streamlit presentation
 │   ├── .streamlit/
@@ -32,20 +34,21 @@ Software-defects-data-analysis/
 │   │   ├── data_processing.py
 │   │   └── visualization.py
 |   ├── tests/                       # Unit tests for core functions
+│   │   ├── __init__.py
 │   │   ├── test_data_processing.py
 │   │   └── test_visualization.py
 |   ├── docker-compose.yaml
 |   ├── Dockerfile
 │   └── Home.py
-├── requirements.txt                 # Python dependencies
-├── setup.sh                         # Linux/Mac setup script via python venv
-├── setup.bat                        # Windows setup script via python venv
-├── setup_uv.sh                      # Linux/Mac setup script via uv
-├── setup_uv.bat                     # Windows setup script via uv
-├── test_setup.py                    # Validation script
 ├── .env                             # Environment variables (optional)
 ├── .gitignore                       # Git ignore rules
-└── README.md                        # This file
+├── README.md                        # This file
+├── requirements.txt                 # Python dependencies
+├── setup_uv.sh                      # Linux/Mac setup script via uv
+├── setup_uv.bat                     # Windows setup script via uv
+├── setup.sh                         # Linux/Mac setup script via python venv
+├── setup.bat                        # Windows setup script via python venv
+└── test_environment.py              # Validation script
 ```
 
 ## How to run the project
@@ -55,7 +58,7 @@ Software-defects-data-analysis/
 ```bash
 # Clone the **repository**
 git clone <your-repo-url>
-cd local-data-engineering-environment
+cd Software-defects-data-analysis
 
 # Run the automated setup script
 ./setup.sh  # Linux/Mac
@@ -68,7 +71,7 @@ setup.bat   # Windows
 ```bash
 # Clone the **repository**
 git clone <your-repo-url>
-cd local-data-engineering-environment
+cd Software-defects-data-analysis
 
 # Run the automated setup script
 ./setup_uv.sh  # Linux/Mac
@@ -142,8 +145,12 @@ The app will be available at **http://localhost:8501** in both local options.
 
 ## Run the tests
 
-Tests live in `streamlit_app/tests/` and must be run from the `streamlit_app/` directory
-so that `src.*` imports resolve correctly.
+Tests live in `streamlit_app/tests/`. They can be run from either the project root or the
+`streamlit_app/` subdirectory — pytest adds the test file's parent to `sys.path` automatically,
+so `src.*` imports resolve correctly in both cases.
+
+> **Note:** the Python venv setup (`setup.bat` / `setup.sh`) requires **Python 3.12 or higher**.
+> Using an older Python will fail at the `polars` installation step.
 
 ### Python venv
 
@@ -152,6 +159,10 @@ source env/bin/activate  # Linux/Mac
 # OR
 env\Scripts\activate.bat  # Windows
 
+# From the project root:
+pytest streamlit_app/tests/
+
+# Or from inside streamlit_app/:
 cd streamlit_app
 pytest tests/
 ```
@@ -159,6 +170,10 @@ pytest tests/
 ### uv
 
 ```bash
+# From the project root:
+uv run pytest streamlit_app/tests/
+
+# Or from inside streamlit_app/:
 cd streamlit_app
 uv run pytest tests/
 ```
