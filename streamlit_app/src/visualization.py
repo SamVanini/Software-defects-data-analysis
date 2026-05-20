@@ -19,7 +19,7 @@ def get_output_path(filename: str) -> Path:
     """
     dotenv.load_dotenv()
     env_dir = os.getenv("OUTPUT_DIR")
-    print(f"Env dir: {env_dir}")
+
     if env_dir is not None:
         return Path(env_dir) / filename
 
