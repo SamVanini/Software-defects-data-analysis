@@ -55,7 +55,7 @@ phase1 = pl.DataFrame({
 st.dataframe(phase1, width='stretch', hide_index=True)
 
 st.warning("""
-**Diagnostic pattern: high recall + low precision + ROC-AUC ≈ 0.46–0.51**
+**Diagnostic pattern: high recall + low precision + ROC-AUC ~= 0.46-0.51**
 
 This combination means every model learned to **predict "defective" for almost every sample**
 rather than actually discriminating. The extreme case is SVM: Recall = 1.000 and

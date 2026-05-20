@@ -37,4 +37,4 @@ headingFontWeights = [600, 500, 500, 500, 500, 500]
 headingFontSizes = ["3rem", "2.5rem", "2.25rem", "2rem", "1.5rem"]
 codeFont = "SpaceMono"
 codeFontSize = ".75rem"
-codeBackgroundColor = "#ecebe4"
+codeBackgroundColor = "#7c7c7c"

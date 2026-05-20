@@ -131,7 +131,7 @@ st.header("5.4  Root cause analysis")
 
 st.markdown("""
 All modelling interventions - hyperparameter tuning, feature engineering, class balancing,
-and mutual information selection - converged to the same ceiling of **ROC-AUC ≈ 0.55**.
+and mutual information selection - converged to the same ceiling of **ROC-AUC ~= 0.55**.
 This consistency across fundamentally different model families and methodologies is
 strong evidence that the ceiling is **intrinsic to the data, not an implementation artefact.**
 """)

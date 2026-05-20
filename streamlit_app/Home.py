@@ -23,7 +23,7 @@ module contains defects using only **static code metrics**.
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Datasets merged", "5", help="JM1 · KC1 · CM1 · KC2 · PC1 (NASA MDP)")
 col2.metric("Modules after cleaning", "996")
-col3.metric("Class imbalance ratio", "≈ 2.07", help="67 % clean · 33 % defective")
+col3.metric("Class imbalance ratio", "~= 2.07", help="67 % clean · 33 % defective")
 col4.metric("Best ROC-AUC achieved", "0.548", delta="+0.048 vs random", delta_color="off")
 
 st.divider()
@@ -46,7 +46,7 @@ data = {
         "MI feature selection with bootstrap stability check and cross-validated k selection",
     ],
     "Key finding": [
-        "996 clean modules, mild IR ≈ 2 - resampling *shouldn't* be necessary",
+        "996 clean modules, mild IR ~= 2 - resampling *shouldn't* be necessary",
         "Max |r| = 0.07 - near-zero linear signal, no dominant non-linear predictor",
         "Best ROC-AUC 0.548 after engineering; SVM still predicts every module as defective",
         "Every resampling strategy underperformed the SVM baseline - IR is not the bottleneck",

@@ -32,11 +32,11 @@ with col_text:
     **Key observations:**
 
     - The two highest absolute correlations with `DEFECT_LABEL` are:
-      - `NUM_OPERANDS` ↔ label: **r = -0.07**
-      - `BRANCH_COUNT` ↔ label: **r = +0.06**
+      - `NUM_OPERANDS` <-> label: **r = -0.07**
+      - `BRANCH_COUNT` <-> label: **r = +0.06**
     - These values are effectively zero.
-    - Strong **inter-feature** correlations exist (e.g. VOLUME ↔ LENGTH ≈ 0.95,
-      NUM_OPERATORS ↔ NUM_OPERANDS ≈ 0.88), indicating high redundancy - but
+    - Strong **inter-feature** correlations exist (e.g. VOLUME <-> LENGTH ~= 0.95,
+      NUM_OPERATORS <-> NUM_OPERANDS ~= 0.88), indicating high redundancy - but
       no useful signal leaking through to the label.
 
     **Implication for models:**
