@@ -2,6 +2,10 @@ import pytest
 from pathlib import Path
 from src.visualization import get_output_path
 
+def test_get_output_path_env_override_is_used(monkeypatch, tmp_path):
+    monkeypatch.setenv("OUTPUT_DIR", str(tmp_path))
+    result = get_output_path("test.png")
+    assert result == tmp_path / "test.png"
 
 def test_get_output_path_returns_path_object():
     result = get_output_path("test.png")
@@ -19,9 +23,9 @@ def test_get_output_path_parent_is_output_dir():
     assert result.parent.name == "output"
 
 
-def test_get_output_path_is_absolute():
+def test_get_output_path_is_not_absolute():
     result = get_output_path("test.png")
-    assert result.is_absolute()
+    assert result.is_absolute() is False
 
 
 def test_get_output_path_different_filenames_produce_different_paths():

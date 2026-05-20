@@ -41,7 +41,7 @@ def test_load_raw_data_not_existant_env_should_use_fallback(mock_del_data_dir):
 
 @pytest.fixture
 def mock_del_data_dir(monkeypatch):
-    monkeypatch.delenv("DATA_DIR")
+    monkeypatch.delenv("DATA_DIR", raising=False)
 
 def test_load_raw_data_existant_file_should_return_dataframe():
     # Arrange
