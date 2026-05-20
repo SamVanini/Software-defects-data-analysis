@@ -1,6 +1,9 @@
 [server]
 enableStaticServing = false
 
+[client]
+toolbarMode = "minimal"
+
 [theme.light]
 primaryColor = "#cb785c"
 backgroundColor = "#fdfdf8"
