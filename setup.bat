@@ -30,6 +30,20 @@ if ERRORLEVEL 1 (
     EXIT /b 1
 )
 
+REM Check Python version is 3.12 or higher
+python -c "import sys; sys.exit(0 if sys.version_info >= (3, 12) else 1)" >nul 2>&1
+
+if ERRORLEVEL 1 (
+    ECHO.
+    FOR /F "tokens=*" %%i IN ('python --version 2^>^&1') DO SET PY_VERSION=%%i
+    ECHO [ERROR] Python 3.12 or higher is required, but found: %PY_VERSION%
+    ECHO.
+    ECHO Please install Python 3.12+ from: http://python.org/downloads (http://python.org/downloads/)/
+    ECHO.
+    PAUSE
+    EXIT /b 1
+)
+
 REM Create virtual environment using Python
 ECHO [2/7] Creating virtual environment with Python...
 python -m venv env
